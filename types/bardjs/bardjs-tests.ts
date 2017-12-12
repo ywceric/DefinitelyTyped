@@ -1,8 +1,6 @@
 import * as angular from 'angular';
+import { assert, expect } from 'chai';
 import 'angular-mocks';
-
-var expect = chai.expect,
-    assert = chai.assert;
 
 class MyService {
     constructor(private $q: angular.IQService) {}
