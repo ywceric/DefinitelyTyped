@@ -8,8 +8,9 @@
 //                 Willis Plummer <https://github.com/willisplummer>
 //                 Santiago Vilar <https://github.com/smvilar>
 //                 Ulf Schwekendiek <https://github.com/sulf>
+//                 Pablo Varela <https://github.com/pablopunk>
 // Definitions: https://github.com/DefinitelyTyped/DefinitelyTyped
-// TypeScript Version: 2.6
+// TypeScript Version: 2.8
 
 import * as React from 'react';
 import * as Immutable from 'immutable';
@@ -610,6 +611,7 @@ declare namespace Draft {
             import DraftBlockType = Draft.Model.Constants.DraftBlockType;
             import DraftEntityMutability = Draft.Model.Constants.DraftEntityMutability;
             import DraftEntityType = Draft.Model.Constants.DraftEntityType;
+            import DraftEntityInstance = Draft.Model.Entity.DraftEntityInstance;
 
             import DraftDecoratorType = Draft.Model.Decorators.DraftDecoratorType;
 
@@ -754,6 +756,8 @@ declare namespace Draft {
                 getEntity(key: string): EntityInstance;
                 getLastCreatedEntityKey(): string;
                 mergeEntityData(key: string, toMerge: { [key: string]: any }): ContentState;
+                replaceEntityData(key: string, toMerge: { [key: string]: any }): ContentState;
+                addEntity(instance: DraftEntityInstance): ContentState;
 
 
                 getBlockMap(): BlockMap;
@@ -947,6 +951,7 @@ import Editor = Draft.Component.Base.DraftEditor;
 import EditorProps = Draft.Component.Base.DraftEditorProps;
 import EditorBlock = Draft.Component.Components.DraftEditorBlock;
 import EditorState = Draft.Model.ImmutableData.EditorState;
+import EditorChangeType = Draft.Model.ImmutableData.EditorChangeType;
 
 import CompositeDecorator = Draft.Model.Decorators.CompositeDraftDecorator;
 import Entity = Draft.Model.Entity.DraftEntity;
@@ -996,6 +1001,7 @@ export {
     EditorProps,
     EditorBlock,
     EditorState,
+    EditorChangeType,
 
     CompositeDecorator,
     Entity,

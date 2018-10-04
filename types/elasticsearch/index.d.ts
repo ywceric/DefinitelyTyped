@@ -12,6 +12,8 @@
 // Definitions: https://github.com/DefinitelyTyped/DefinitelyTyped
 // TypeScript Version: 2.2
 
+import HttpConnector = require("./src/lib/connectors/http");
+
 export class Client {
     constructor(params: ConfigOptions);
     cat: Cat;
@@ -111,7 +113,7 @@ export interface ConfigOptions {
     keepAlive?: boolean;
     maxSockets?: number;
     suggestCompression?: boolean;
-    connectionClass?: string;
+    connectionClass?: string | typeof HttpConnector;
     sniffedNodesProtocol?: string;
     ssl?: object;
     selector?: any;
@@ -463,7 +465,7 @@ export interface MGetParams extends GenericParams {
     preference?: string;
     realtime?: boolean;
     refresh?: boolean;
-    source?: NameList;
+    _source?: NameList;
     _sourceExclude?: NameList;
     _sourceInclude?: NameList;
     index?: string;
@@ -643,6 +645,7 @@ export interface SearchResponse<T> {
             fields?: any;
             highlight?: any;
             inner_hits?: any;
+            matched_queries?: string[];
             sort?: string[];
         }>;
     };
@@ -1141,6 +1144,7 @@ export interface IndicesDeleteParams extends GenericParams {
     timeout?: TimeSpan;
     masterTimeout?: TimeSpan;
     index: NameList;
+    ignoreUnavailable?: boolean;
 }
 
 export interface IndicesDeleteAliasParams extends GenericParams {
